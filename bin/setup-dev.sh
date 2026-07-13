@@ -122,6 +122,33 @@ for slug in "${!RESOURCES[@]}"; do
   fi
 done
 
+echo "==> Seeding sample Events for the racing schedule"
+# Dates computed relative to today so this seed data stays "upcoming"
+# (and visible under the icsa-events-query filter) no matter when the
+# script is run, rather than hardcoding dates that will eventually pass.
+E1_START=$(date -d "+45 days" +%Y-%m-%d); E1_END=$(date -d "+46 days" +%Y-%m-%d)
+E2_START=$(date -d "+70 days" +%Y-%m-%d); E2_END=$(date -d "+70 days" +%Y-%m-%d)
+E3_START=$(date -d "+95 days" +%Y-%m-%d); E3_END=$(date -d "+97 days" +%Y-%m-%d)
+
+declare -A EVENTS=(
+  ["maisa-fall-dinghy-regatta"]="MAISA Fall Dinghy Regatta|Team Race|${E1_START}|${E1_END}|Old Dominion University — Norfolk, VA|open|<p>Conference-level fleet racing kicking off the fall season.</p>"
+  ["neisa-team-race-qualifier"]="NEISA Team Race Qualifier|Team Race|${E2_START}|${E2_END}|Coast Guard Academy — New London, CT|open|<p>Qualifying regatta for the NEISA team racing championship.</p>"
+  ["icsa-fall-championship-weekend"]="ICSA Fall Championship Weekend|Open Dinghy|${E3_START}|${E3_END}|U.S. Naval Academy — Annapolis, MD|coming-soon|<p>The national fall championship weekend, hosted this year at Annapolis.</p>"
+)
+for slug in "${!EVENTS[@]}"; do
+  IFS='|' read -r title champ start end location status content <<< "${EVENTS[$slug]}"
+  if [ "$($WP post list --post_type=event --name="$slug" --format=count)" = "0" ]; then
+    POST_ID=$($WP post create --post_type=event --post_status=publish \
+      --post_title="$title" --post_name="$slug" --post_content="$content" \
+      --porcelain)
+    $WP post term set "$POST_ID" championship_type "$champ"
+    $WP post meta update "$POST_ID" icsa_event_start "$start"
+    $WP post meta update "$POST_ID" icsa_event_end "$end"
+    $WP post meta update "$POST_ID" icsa_event_location "$location"
+    $WP post meta update "$POST_ID" icsa_event_status "$status"
+  fi
+done
+
 HOME_ID=$($WP post list --post_type=page --name=home --field=ID)
 NEWS_ID=$($WP post list --post_type=page --name=news --field=ID)
 $WP option update show_on_front page

@@ -165,50 +165,25 @@
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:group {"className":"icsa-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","right":"var:preset|spacing|20","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20"}}}} -->
-			<div class="wp-block-group icsa-card" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
-
-				<!-- wp:group {"className":"icsa-event"} -->
-				<div class="wp-block-group icsa-event">
-					<div class="icsa-event-date"><span class="month">May</span><span class="days">16&#8211;18</span></div>
-					<!-- wp:group {"layout":{"type":"constrained"}} -->
-					<div class="wp-block-group">
-						<!-- wp:paragraph {"fontSize":"caption"} --><p class="has-caption-font-size"><span class="icsa-status is-open">Registration open</span></p><!-- /wp:paragraph -->
-						<!-- wp:heading {"level":3,"fontSize":"heading"} --><h3 class="wp-block-heading has-heading-font-size">Women&#8217;s National Championship</h3><!-- /wp:heading -->
-						<!-- wp:paragraph --><p>Old Dominion University &#8212; Norfolk, VA</p><!-- /wp:paragraph -->
-					</div>
-					<!-- /wp:group -->
+			<!-- wp:query {"className":"icsa-events-query","query":{"postType":"event","perPage":3,"pages":0,"offset":0,"order":"asc","orderBy":"date","inherit":false}} -->
+			<div class="wp-block-query icsa-events-query">
+				<!-- wp:group {"className":"icsa-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","right":"var:preset|spacing|20","bottom":"var:preset|spacing|10","left":"var:preset|spacing|20"}}}} -->
+				<div class="wp-block-group icsa-card" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)">
+					<!-- wp:post-template -->
+						<!-- wp:paragraph {"className":"icsa-event-card-slot"} -->
+						<p class="icsa-event-card-slot"></p>
+						<!-- /wp:paragraph -->
+					<!-- /wp:post-template -->
 				</div>
 				<!-- /wp:group -->
 
-				<!-- wp:group {"className":"icsa-event"} -->
-				<div class="wp-block-group icsa-event">
-					<div class="icsa-event-date"><span class="month">May</span><span class="days">30&#8211;31</span></div>
-					<!-- wp:group {"layout":{"type":"constrained"}} -->
-					<div class="wp-block-group">
-						<!-- wp:paragraph {"fontSize":"caption"} --><p class="has-caption-font-size"><span class="icsa-status is-open">Registration open</span></p><!-- /wp:paragraph -->
-						<!-- wp:heading {"level":3,"fontSize":"heading"} --><h3 class="wp-block-heading has-heading-font-size">Singlehanded National Championship</h3><!-- /wp:heading -->
-						<!-- wp:paragraph --><p>Cooper River, NJ</p><!-- /wp:paragraph -->
-					</div>
-					<!-- /wp:group -->
-				</div>
-				<!-- /wp:group -->
-
-				<!-- wp:group {"className":"icsa-event"} -->
-				<div class="wp-block-group icsa-event">
-					<div class="icsa-event-date"><span class="month">Jun</span><span class="days">6&#8211;8</span></div>
-					<!-- wp:group {"layout":{"type":"constrained"}} -->
-					<div class="wp-block-group">
-						<!-- wp:paragraph {"fontSize":"caption"} --><p class="has-caption-font-size"><span class="icsa-status is-upcoming">Coming soon</span></p><!-- /wp:paragraph -->
-						<!-- wp:heading {"level":3,"fontSize":"heading"} --><h3 class="wp-block-heading has-heading-font-size">Open National Championship</h3><!-- /wp:heading -->
-						<!-- wp:paragraph --><p>U.S. Naval Academy &#8212; Annapolis, MD</p><!-- /wp:paragraph -->
-					</div>
-					<!-- /wp:group -->
-				</div>
-				<!-- /wp:group -->
-
+				<!-- wp:query-no-results -->
+					<!-- wp:paragraph -->
+					<p>No upcoming events scheduled right now.</p>
+					<!-- /wp:paragraph -->
+				<!-- /wp:query-no-results -->
 			</div>
-			<!-- /wp:group -->
+			<!-- /wp:query -->
 		</div>
 		<!-- /wp:column -->
 

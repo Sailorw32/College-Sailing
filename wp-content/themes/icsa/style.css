@@ -173,6 +173,10 @@ Text Domain: icsa
   color: var(--wp--preset--color--ink-soft);
   background: var(--wp--preset--color--rule);
 }
+.icsa-status.is-completed {
+  color: var(--wp--preset--color--navy);
+  background: var(--wp--preset--color--navy-wash, rgba(22, 58, 92, 0.1));
+}
 
 /* Resources */
 .icsa-resource-row {

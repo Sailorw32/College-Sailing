@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require get_theme_file_path( 'inc/resources.php' );
+require get_theme_file_path( 'inc/racing.php' );
 
 /**
  * Block themes don't auto-load style.css on the front end the way classic

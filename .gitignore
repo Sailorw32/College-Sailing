@@ -1,0 +1,21 @@
+# WordPress core (fetched by bin/setup-dev.sh, not tracked)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/xmlrpc.php
+/index.php
+/license.txt
+/readme.html
+/wp-content/plugins/
+/wp-content/upgrade/
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/db.php
+/wp-content/database/
+wp-config.php
+
+# Local dev artifacts
+*.sqlite
+*.log
+.DS_Store
+/bin/wp-cli.phar

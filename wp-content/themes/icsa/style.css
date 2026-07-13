@@ -1,0 +1,60 @@
+/*
+Theme Name: ICSA
+Theme URI: https://github.com/sailorw32/college-sailing
+Author: ICSA
+Description: Custom block theme for the Inter-Collegiate Sailing Association, built to replace the legacy ExpressionEngine/Bootstrap 3 site. Design tokens live in theme.json.
+Version: 0.1.0
+Requires at least: 6.4
+Requires PHP: 8.0
+Text Domain: icsa
+*/
+
+/* Dark-mode-aware overrides for the palette defined in theme.json.
+   Block themes can't branch theme.json on a media query, so the actual
+   color values are re-declared here as CSS custom property overrides. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --wp--preset--color--paper: #0D1720;
+    --wp--preset--color--paper-raised: #142330;
+    --wp--preset--color--ink: #E8EDEF;
+    --wp--preset--color--ink-soft: #A8B7BE;
+    --wp--preset--color--navy: #7FB0DE;
+    --wp--preset--color--navy-deep: #BFDCF5;
+    --wp--preset--color--signal: #E3936B;
+    --wp--preset--color--teal: #6FBBB4;
+    --wp--preset--color--rule: #233440;
+  }
+}
+
+/* Small helpers used by patterns; kept out of theme.json since they're
+   layout utilities, not design tokens. */
+.icsa-eyebrow {
+  font-family: var(--wp--preset--font-family--mono);
+  font-size: var(--wp--preset--font-size--caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--navy);
+}
+
+.icsa-card {
+  background: var(--wp--preset--color--paper-raised);
+  border: 1px solid var(--wp--preset--color--rule);
+  border-radius: 3px;
+}
+
+.icsa-chart-rule {
+  border: none;
+  border-top: 1px solid var(--wp--preset--color--rule);
+  margin: 0;
+}
+
+.icsa-hero {
+  background-color: var(--wp--preset--color--navy-deep);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0, rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0, rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 48px);
+}
+
+.icsa-hero .wp-block-button__link {
+  font-family: var(--wp--preset--font-family--body);
+}

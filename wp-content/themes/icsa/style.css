@@ -9,6 +9,17 @@ Requires PHP: 8.0
 Text Domain: icsa
 */
 
+/* Self-hosted rather than linked from Google Fonts' CDN — one request,
+   no third-party tracking pixel on every page load, and it still works if
+   fonts.googleapis.com is ever blocked. Variable font, latin subset only. */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url('assets/fonts/oswald-latin.woff2') format('woff2');
+}
+
 /* Dark-mode-aware overrides for the palette defined in theme.json.
    Block themes can't branch theme.json on a media query, so the actual
    color values are re-declared here as CSS custom property overrides. */
@@ -20,7 +31,7 @@ Text Domain: icsa
     --wp--preset--color--ink-soft: #A8B7BE;
     --wp--preset--color--navy: #7FB0DE;
     --wp--preset--color--navy-deep: #BFDCF5;
-    --wp--preset--color--signal: #E3936B;
+    --wp--preset--color--signal: #F0664F;
     --wp--preset--color--teal: #6FBBB4;
     --wp--preset--color--rule: #233440;
   }
@@ -57,4 +68,108 @@ Text Domain: icsa
 
 .icsa-hero .wp-block-button__link {
   font-family: var(--wp--preset--font-family--body);
+}
+
+/* If the Home page has a featured image, the hero uses it (with a navy
+   scrim so text stays readable); otherwise it falls back to the plain
+   chart-line texture above. Drop a real event photo in via the Home page's
+   featured image whenever one is available. */
+.icsa-hero.has-photo {
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  background-image:
+    linear-gradient(180deg, rgba(12, 39, 64, 0.78) 0%, rgba(12, 39, 64, 0.92) 100%),
+    var(--icsa-hero-photo);
+}
+
+.icsa-hero h1 {
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.icsa-tagline {
+  font-family: var(--wp--preset--font-family--display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  color: var(--wp--preset--color--signal);
+}
+
+/* Stats bar */
+.icsa-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--wp--preset--spacing--30);
+}
+@media (max-width: 782px) {
+  .icsa-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.icsa-stat-number {
+  font-family: var(--wp--preset--font-family--display);
+  font-size: var(--wp--preset--font-size--title);
+  font-weight: 700;
+  color: var(--wp--preset--color--paper);
+  line-height: 1;
+  margin: 0 0 0.25em;
+}
+.icsa-stat-label {
+  font-size: var(--wp--preset--font-size--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9FC4E8;
+}
+
+/* Events list */
+.icsa-event {
+  display: flex;
+  gap: var(--wp--preset--spacing--20);
+  align-items: flex-start;
+  padding: var(--wp--preset--spacing--20) 0;
+  border-bottom: 1px solid var(--wp--preset--color--rule);
+}
+.icsa-event:last-child {
+  border-bottom: none;
+}
+.icsa-event-date {
+  flex: 0 0 auto;
+  width: 4.25rem;
+  text-align: center;
+  background: var(--wp--preset--color--navy-deep);
+  color: var(--wp--preset--color--paper);
+  border-radius: 3px;
+  padding: 0.5em 0;
+  font-family: var(--wp--preset--font-family--display);
+}
+.icsa-event-date .month {
+  display: block;
+  font-size: var(--wp--preset--font-size--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--wp--preset--color--signal);
+}
+.icsa-event-date .days {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.icsa-status {
+  display: inline-block;
+  font-size: var(--wp--preset--font-size--caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15em 0.6em;
+  border-radius: 20px;
+}
+.icsa-status.is-open {
+  color: var(--wp--preset--color--teal);
+  background: rgba(42, 103, 99, 0.12);
+}
+.icsa-status.is-upcoming {
+  color: var(--wp--preset--color--ink-soft);
+  background: var(--wp--preset--color--rule);
 }

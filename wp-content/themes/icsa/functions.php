@@ -130,3 +130,33 @@ add_filter( 'robots_txt', function ( $output ) {
 add_action( 'init', function () {
 	register_block_pattern_category( 'icsa', [ 'label' => __( 'ICSA', 'icsa' ) ] );
 } );
+
+/**
+ * The homepage hero uses a plain navy chart-line texture by default. If
+ * whoever's editing the Home page sets a featured image, use that as the
+ * hero photo instead — no template change needed, just add an image.
+ */
+add_filter( 'render_block', function ( $block_content, $block ) {
+	if ( ! is_front_page() || ( $block['blockName'] ?? '' ) !== 'core/group' ) {
+		return $block_content;
+	}
+	if ( ! str_contains( $block['attrs']['className'] ?? '', 'icsa-hero' ) ) {
+		return $block_content;
+	}
+
+	$home_id = (int) get_option( 'page_on_front' );
+	if ( ! $home_id || ! has_post_thumbnail( $home_id ) ) {
+		return $block_content;
+	}
+
+	$url            = esc_url( get_the_post_thumbnail_url( $home_id, 'full' ) );
+	$block_content  = str_replace( 'icsa-hero', 'icsa-hero has-photo', $block_content );
+	$block_content  = preg_replace(
+		'/style="/',
+		'style="--icsa-hero-photo:url(' . $url . ');',
+		$block_content,
+		1
+	);
+
+	return $block_content;
+}, 10, 2 );

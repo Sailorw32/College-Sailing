@@ -16,7 +16,7 @@
         { "slug": "ink-soft", "name": "Ink Soft", "color": "#48565F" },
         { "slug": "navy", "name": "Navy", "color": "#163A5C" },
         { "slug": "navy-deep", "name": "Navy Deep", "color": "#0C2740" },
-        { "slug": "signal", "name": "Signal Red", "color": "#B23B23" },
+        { "slug": "signal", "name": "Signal Red", "color": "#D33A2C" },
         { "slug": "teal", "name": "Sea Teal", "color": "#2A6763" },
         { "slug": "rule", "name": "Rule", "color": "#D7DCDB" }
       ],
@@ -29,7 +29,7 @@
         {
           "slug": "display",
           "name": "Display",
-          "fontFamily": "'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, 'Times New Roman', serif"
+          "fontFamily": "'Oswald', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif"
         },
         {
           "slug": "body",
@@ -80,7 +80,8 @@
       "heading": {
         "typography": {
           "fontFamily": "var(--wp--preset--font-family--display)",
-          "fontWeight": "400"
+          "fontWeight": "600",
+          "letterSpacing": "-0.01em"
         },
         "color": { "text": "var(--wp--preset--color--ink)" }
       },

@@ -1,0 +1,44 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)">
+	<!-- wp:group {"layout":{"type":"constrained","contentSize":"640px"}} -->
+	<div class="wp-block-group">
+		<!-- wp:post-title {"level":1,"fontSize":"title"} /-->
+
+		<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"query":{"postType":"resource","perPage":50,"pages":0,"offset":0,"order":"desc","orderBy":"date","inherit":false},"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+	<div class="wp-block-query" style="margin-top:var(--wp--preset--spacing--40)">
+		<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
+			<!-- wp:group {"className":"icsa-card icsa-resource-row","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","right":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+			<div class="wp-block-group icsa-card icsa-resource-row" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+				<!-- wp:group {"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group">
+					<!-- wp:post-terms {"term":"resource_category","className":"icsa-eyebrow"} /-->
+					<!-- wp:post-title {"level":3,"isLink":true,"fontSize":"heading"} /-->
+					<!-- wp:post-excerpt {"excerptLength":20} /-->
+					<!-- wp:post-date {"format":"F j, Y","prefix":"Updated ","fontSize":"caption","style":{"color":{"text":"#7C8790"}}} /-->
+				</div>
+				<!-- /wp:group -->
+
+				<!-- wp:paragraph {"className":"icsa-resource-download-slot"} -->
+				<p class="icsa-resource-download-slot"></p>
+				<!-- /wp:paragraph -->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph -->
+			<p>No resources have been added yet.</p>
+			<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+	</div>
+	<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

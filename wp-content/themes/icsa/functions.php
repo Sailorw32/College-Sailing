@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require get_theme_file_path( 'inc/resources.php' );
+
 /**
  * Block themes don't auto-load style.css on the front end the way classic
  * themes do — theme.json covers design tokens, but the hand-written CSS

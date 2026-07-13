@@ -173,3 +173,45 @@ Text Domain: icsa
   color: var(--wp--preset--color--ink-soft);
   background: var(--wp--preset--color--rule);
 }
+
+/* Resources */
+.icsa-resource-row {
+  align-items: center;
+}
+.icsa-resource-row > .wp-block-group:first-child {
+  flex: 1 1 320px;
+}
+.icsa-resource-download-slot {
+  margin: 0;
+}
+.icsa-resource-download {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
+  text-decoration: none;
+  background: var(--wp--preset--color--navy);
+  color: var(--wp--preset--color--paper);
+  border-radius: 3px;
+  padding: 0.6em 1.4em;
+  white-space: nowrap;
+}
+.icsa-resource-download:hover {
+  background: var(--wp--preset--color--signal);
+  color: var(--wp--preset--color--paper);
+}
+.icsa-resource-download span:first-child {
+  font-family: var(--wp--preset--font-family--display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.icsa-resource-download .icsa-resource-meta {
+  font-size: var(--wp--preset--font-size--caption);
+  opacity: 0.75;
+}
+.icsa-resource-pending {
+  font-size: var(--wp--preset--font-size--caption);
+  color: var(--wp--preset--color--ink-soft);
+  font-style: italic;
+}

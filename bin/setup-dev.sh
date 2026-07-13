@@ -96,6 +96,32 @@ for title in "${!NAV_PAGES[@]}"; do
   fi
 done
 
+echo "==> Seeding resource categories"
+for cat in "Governance & Bylaws" "Forms" "Meeting Minutes" "Rules & Handbooks"; do
+  $WP term create resource_category "$cat" --porcelain > /dev/null 2>&1 || true
+done
+
+echo "==> Seeding sample Resource entries (with placeholder PDFs from seed/)"
+declare -A RESOURCES=(
+  ["rules-of-racing"]="Rules of Racing (2025-2026)|Rules & Handbooks|seed/rules-of-racing.pdf|<p>The current rules governing fleet and team racing, updated for the 2025-2026 season.</p>"
+  ["icsa-bylaws"]="ICSA Bylaws|Governance & Bylaws|seed/bylaws.pdf|<p>The association's governing bylaws.</p>"
+  ["fall-2025-board-meeting-minutes"]="Fall 2025 Board Meeting Minutes|Meeting Minutes|seed/fall-2025-minutes.pdf|<p>Minutes from the Fall 2025 ICSA board meeting.</p>"
+  ["conference-bid-form"]="Conference Bid Form|Forms||<p>Form for submitting a bid to host a conference championship. Real form pending upload.</p>"
+)
+for slug in "${!RESOURCES[@]}"; do
+  IFS='|' read -r title category file content <<< "${RESOURCES[$slug]}"
+  if [ "$($WP post list --post_type=resource --name="$slug" --format=count)" = "0" ]; then
+    POST_ID=$($WP post create --post_type=resource --post_status=publish \
+      --post_title="$title" --post_name="$slug" --post_content="$content" \
+      --porcelain)
+    $WP post term set "$POST_ID" resource_category "$category"
+    if [ -n "$file" ] && [ -f "$file" ]; then
+      ATTACHMENT_ID=$($WP media import "$file" --porcelain)
+      $WP post meta update "$POST_ID" icsa_resource_file_id "$ATTACHMENT_ID"
+    fi
+  fi
+done
+
 HOME_ID=$($WP post list --post_type=page --name=home --field=ID)
 NEWS_ID=$($WP post list --post_type=page --name=news --field=ID)
 $WP option update show_on_front page

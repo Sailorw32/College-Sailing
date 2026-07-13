@@ -10,15 +10,16 @@
     },
     "color": {
       "palette": [
-        { "slug": "paper", "name": "Paper", "color": "#F3F5F2" },
-        { "slug": "paper-raised", "name": "Paper Raised", "color": "#FFFFFF" },
-        { "slug": "ink", "name": "Ink", "color": "#10222E" },
-        { "slug": "ink-soft", "name": "Ink Soft", "color": "#48565F" },
-        { "slug": "navy", "name": "Navy", "color": "#163A5C" },
-        { "slug": "navy-deep", "name": "Navy Deep", "color": "#0C2740" },
-        { "slug": "signal", "name": "Signal Red", "color": "#D33A2C" },
+        { "slug": "paper", "name": "Paper", "color": "#FFFFFF" },
+        { "slug": "paper-raised", "name": "Paper Raised", "color": "#F5F7FB" },
+        { "slug": "ink", "name": "Ink", "color": "#10151F" },
+        { "slug": "ink-soft", "name": "Ink Soft", "color": "#525A68" },
+        { "slug": "navy", "name": "Spinnaker Blue", "color": "#1854C4" },
+        { "slug": "navy-deep", "name": "Spinnaker Blue Deep", "color": "#0F3D91" },
+        { "slug": "signal", "name": "Coral", "color": "#E8433A" },
         { "slug": "teal", "name": "Sea Teal", "color": "#2A6763" },
-        { "slug": "rule", "name": "Rule", "color": "#D7DCDB" }
+        { "slug": "pop", "name": "Buoy Yellow", "color": "#F4B400" },
+        { "slug": "rule", "name": "Rule", "color": "#E1E5EE" }
       ],
       "custom": true,
       "customDuotone": false,
@@ -29,7 +30,7 @@
         {
           "slug": "display",
           "name": "Display",
-          "fontFamily": "'Oswald', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif"
+          "fontFamily": "'Archivo Black', 'Arial Black', 'Helvetica Neue', Arial, sans-serif"
         },
         {
           "slug": "body",
@@ -80,8 +81,7 @@
       "heading": {
         "typography": {
           "fontFamily": "var(--wp--preset--font-family--display)",
-          "fontWeight": "600",
-          "letterSpacing": "-0.01em"
+          "fontWeight": "400"
         },
         "color": { "text": "var(--wp--preset--color--ink)" }
       },

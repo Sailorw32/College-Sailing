@@ -11,13 +11,13 @@ Text Domain: icsa
 
 /* Self-hosted rather than linked from Google Fonts' CDN — one request,
    no third-party tracking pixel on every page load, and it still works if
-   fonts.googleapis.com is ever blocked. Variable font, latin subset only. */
+   fonts.googleapis.com is ever blocked. Static single weight, latin subset. */
 @font-face {
-  font-family: 'Oswald';
+  font-family: 'Archivo Black';
   font-style: normal;
-  font-weight: 200 700;
+  font-weight: 400;
   font-display: swap;
-  src: url('assets/fonts/oswald-latin.woff2') format('woff2');
+  src: url('assets/fonts/archivo-black.woff2') format('woff2');
 }
 
 /* Dark-mode-aware overrides for the palette defined in theme.json.
@@ -25,15 +25,16 @@ Text Domain: icsa
    color values are re-declared here as CSS custom property overrides. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --wp--preset--color--paper: #0D1720;
-    --wp--preset--color--paper-raised: #142330;
-    --wp--preset--color--ink: #E8EDEF;
-    --wp--preset--color--ink-soft: #A8B7BE;
-    --wp--preset--color--navy: #7FB0DE;
-    --wp--preset--color--navy-deep: #BFDCF5;
-    --wp--preset--color--signal: #F0664F;
+    --wp--preset--color--paper: #0B1220;
+    --wp--preset--color--paper-raised: #141C33;
+    --wp--preset--color--ink: #EAEEF7;
+    --wp--preset--color--ink-soft: #A7B0C4;
+    --wp--preset--color--navy: #6C9EF0;
+    --wp--preset--color--navy-deep: #16265A;
+    --wp--preset--color--signal: #FF7A66;
     --wp--preset--color--teal: #6FBBB4;
-    --wp--preset--color--rule: #233440;
+    --wp--preset--color--pop: #FFC93C;
+    --wp--preset--color--rule: #26314A;
   }
 }
 
@@ -84,8 +85,6 @@ Text Domain: icsa
 }
 
 .icsa-hero h1 {
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
   line-height: 1.05;
 }
 
@@ -100,7 +99,7 @@ Text Domain: icsa
 /* Stats bar */
 .icsa-stats {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--wp--preset--spacing--30);
 }
 @media (max-width: 782px) {
@@ -120,7 +119,7 @@ Text Domain: icsa
   font-size: var(--wp--preset--font-size--caption);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #9FC4E8;
+  color: #F5958E;
 }
 
 /* Events list */

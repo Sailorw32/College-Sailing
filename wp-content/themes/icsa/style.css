@@ -218,3 +218,17 @@ Text Domain: icsa
   color: var(--wp--preset--color--ink-soft);
   font-style: italic;
 }
+
+/* Hall of Fame */
+.icsa-honor-year-slot {
+  margin: 0 0 0.4em;
+}
+.icsa-honor-year {
+  display: inline-block;
+  font-family: var(--wp--preset--font-family--display);
+  font-size: var(--wp--preset--font-size--caption);
+  background: var(--wp--preset--color--pop, #F4B400);
+  color: var(--wp--preset--color--ink);
+  padding: 0.15em 0.6em;
+  border-radius: 20px;
+}

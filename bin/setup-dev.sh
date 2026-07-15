@@ -149,6 +149,29 @@ for slug in "${!EVENTS[@]}"; do
   fi
 done
 
+echo "==> Seeding Hall of Fame categories"
+for cat in "All-American" "All-Academic" "Individual Awards" "Regatta Trophies"; do
+  $WP term create honor_category "$cat" --porcelain > /dev/null 2>&1 || true
+done
+
+echo "==> Seeding sample Honoree entries"
+declare -A HONOREES=(
+  ["2026-all-america-team"]="2026 All-America Team|All-American|2026|<p>The 2026 All-America Team recognizes the nation's top collegiate sailors across fleet and team racing. Full roster to be added during content migration &#8212; see docs/audit.md.</p>"
+  ["2026-all-academic-team"]="2026 All-Academic Team|All-Academic|2026|<p>The 2026 All-Academic Team recognizes student-athletes for excellence in the classroom alongside on-the-water competition. Full roster to be added during content migration.</p>"
+  ["competitive-achievement-award"]="Competitive Achievement Award|Individual Awards|2026|<p>Presented annually to an individual sailor for outstanding competitive achievement. Recipient history to be added during content migration.</p>"
+  ["leonard-m-fowle-trophy"]="Leonard M. Fowle Trophy|Regatta Trophies|2026|<p>A perpetual trophy awarded within college sailing's regatta history. Full trophy history to be added during content migration.</p>"
+)
+for slug in "${!HONOREES[@]}"; do
+  IFS='|' read -r title category year content <<< "${HONOREES[$slug]}"
+  if [ "$($WP post list --post_type=honoree --name="$slug" --format=count)" = "0" ]; then
+    POST_ID=$($WP post create --post_type=honoree --post_status=publish \
+      --post_title="$title" --post_name="$slug" --post_content="$content" \
+      --porcelain)
+    $WP post term set "$POST_ID" honor_category "$category"
+    $WP post meta update "$POST_ID" icsa_honor_year "$year"
+  fi
+done
+
 HOME_ID=$($WP post list --post_type=page --name=home --field=ID)
 NEWS_ID=$($WP post list --post_type=page --name=news --field=ID)
 $WP option update show_on_front page

@@ -12,14 +12,18 @@
       "palette": [
         { "slug": "paper", "name": "Paper", "color": "#FFFFFF" },
         { "slug": "paper-raised", "name": "Paper Raised", "color": "#F5F7FB" },
-        { "slug": "ink", "name": "Ink", "color": "#10151F" },
-        { "slug": "ink-soft", "name": "Ink Soft", "color": "#525A68" },
-        { "slug": "navy", "name": "Spinnaker Blue", "color": "#1854C4" },
-        { "slug": "navy-deep", "name": "Spinnaker Blue Deep", "color": "#0F3D91" },
-        { "slug": "signal", "name": "Coral", "color": "#E8433A" },
+        { "slug": "ink", "name": "Ink", "color": "#12141C" },
+        { "slug": "ink-soft", "name": "Ink Soft", "color": "#565D72" },
+        { "slug": "navy", "name": "Signal Pink", "color": "#C4187A" },
+        { "slug": "navy-deep", "name": "Midnight", "color": "#0B0F1A" },
+        { "slug": "signal", "name": "Ember", "color": "#FF6B35" },
         { "slug": "teal", "name": "Sea Teal", "color": "#2A6763" },
         { "slug": "pop", "name": "Buoy Yellow", "color": "#F4B400" },
+        { "slug": "cyan", "name": "Cyan", "color": "#00E5FF" },
         { "slug": "rule", "name": "Rule", "color": "#E1E5EE" }
+      ],
+      "gradients": [
+        { "slug": "sunset", "name": "Sunset", "gradient": "linear-gradient(135deg,#FF6B35 0%,#F72585 55%,#7209B7 100%)" }
       ],
       "custom": true,
       "customDuotone": false,

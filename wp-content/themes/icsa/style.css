@@ -25,16 +25,17 @@ Text Domain: icsa
    color values are re-declared here as CSS custom property overrides. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --wp--preset--color--paper: #0B1220;
-    --wp--preset--color--paper-raised: #141C33;
-    --wp--preset--color--ink: #EAEEF7;
-    --wp--preset--color--ink-soft: #A7B0C4;
-    --wp--preset--color--navy: #6C9EF0;
-    --wp--preset--color--navy-deep: #16265A;
-    --wp--preset--color--signal: #FF7A66;
+    --wp--preset--color--paper: #0B0F14;
+    --wp--preset--color--paper-raised: #151A24;
+    --wp--preset--color--ink: #F2F4F8;
+    --wp--preset--color--ink-soft: #A6AEBF;
+    --wp--preset--color--navy: #FF5FA8;
+    --wp--preset--color--navy-deep: #05070C;
+    --wp--preset--color--signal: #FF8B5C;
     --wp--preset--color--teal: #6FBBB4;
     --wp--preset--color--pop: #FFC93C;
-    --wp--preset--color--rule: #26314A;
+    --wp--preset--color--cyan: #4DEBFF;
+    --wp--preset--color--rule: #232A3A;
   }
 }
 
@@ -46,6 +47,27 @@ Text Domain: icsa
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--wp--preset--color--navy);
+}
+/* Scoped (not the has-cyan-color attribute class) so it reliably wins over
+   the default above regardless of stylesheet load order. */
+.icsa-hero .icsa-eyebrow {
+  color: var(--wp--preset--color--cyan);
+}
+
+/* Site header is dark now (matches hero/footer) — make sure nav links and
+   the mobile menu toggle are actually visible against it, since core's
+   navigation block doesn't always inherit an ancestor's text color. */
+header.wp-block-group .wp-block-navigation-link a,
+header.wp-block-group .wp-block-navigation__responsive-container-open svg,
+header.wp-block-group .wp-block-navigation__responsive-container-close svg {
+  color: var(--wp--preset--color--paper);
+  fill: var(--wp--preset--color--paper);
+}
+header.wp-block-group .wp-block-navigation-link a:hover {
+  color: var(--wp--preset--color--cyan);
+}
+header.wp-block-group .wp-block-navigation__responsive-container.is-menu-open {
+  background-color: var(--wp--preset--color--navy-deep);
 }
 
 .icsa-card {
@@ -60,28 +82,85 @@ Text Domain: icsa
   margin: 0;
 }
 
+/* Hero background, in priority order: video > photo > gradient glow.
+   The glow is the honest default — no stock photography standing in for
+   real event photos we don't have yet (see inc/hero-media.php). The
+   moment a video or featured image is set on the Home page, it takes
+   over automatically; no template change needed either way. */
 .icsa-hero {
+  position: relative;
+  overflow: hidden;
   background-color: var(--wp--preset--color--navy-deep);
-  background-image:
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0, rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 48px),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0, rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 48px);
 }
 
-.icsa-hero .wp-block-button__link {
-  font-family: var(--wp--preset--font-family--body);
+.icsa-hero::before,
+.icsa-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+.icsa-hero::before {
+  width: 46vw;
+  max-width: 640px;
+  height: 46vw;
+  max-height: 640px;
+  top: -22vw;
+  right: -14vw;
+  background: linear-gradient(135deg, #FF6B35 0%, #F72585 55%, #7209B7 100%);
+  opacity: 0.55;
+}
+.icsa-hero::after {
+  width: 30vw;
+  max-width: 420px;
+  height: 30vw;
+  max-height: 420px;
+  bottom: -18vw;
+  left: -10vw;
+  background: var(--wp--preset--color--cyan);
+  opacity: 0.16;
 }
 
-/* If the Home page has a featured image, the hero uses it (with a navy
-   scrim so text stays readable); otherwise it falls back to the plain
-   chart-line texture above. Drop a real event photo in via the Home page's
-   featured image whenever one is available. */
+.icsa-hero.has-photo::before,
+.icsa-hero.has-photo::after,
+.icsa-hero.has-video::before,
+.icsa-hero.has-video::after {
+  display: none;
+}
+
 .icsa-hero.has-photo {
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply;
   background-image:
-    linear-gradient(180deg, rgba(12, 39, 64, 0.78) 0%, rgba(12, 39, 64, 0.92) 100%),
+    linear-gradient(180deg, rgba(11, 15, 26, 0.78) 0%, rgba(11, 15, 26, 0.92) 100%),
     var(--icsa-hero-photo);
+}
+
+.icsa-hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.icsa-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(11, 15, 26, 0.7) 0%, rgba(11, 15, 26, 0.88) 100%);
+}
+
+.icsa-hero > .wp-block-group {
+  position: relative;
+  z-index: 1;
+}
+
+.icsa-hero .wp-block-button__link {
+  font-family: var(--wp--preset--font-family--body);
 }
 
 .icsa-hero h1 {
@@ -90,10 +169,14 @@ Text Domain: icsa
 
 .icsa-tagline {
   font-family: var(--wp--preset--font-family--display);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-weight: 600;
-  color: var(--wp--preset--color--signal);
+  font-style: italic;
+  transform: skewX(-6deg);
+  display: inline-block;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, #FF6B35 0%, #F72585 55%, #7209B7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Stats bar */
@@ -111,15 +194,21 @@ Text Domain: icsa
   font-family: var(--wp--preset--font-family--display);
   font-size: var(--wp--preset--font-size--title);
   font-weight: 700;
-  color: var(--wp--preset--color--paper);
   line-height: 1;
   margin: 0 0 0.25em;
+  display: inline-block;
+  background: linear-gradient(135deg, #FF6B35 0%, #F72585 55%, #7209B7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 .icsa-stat-label {
   font-size: var(--wp--preset--font-size--caption);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #F5958E;
+  /* Fixed rather than the ink-soft token: this sits on the permanently-dark
+     navy-deep background regardless of the site's light/dark mode. */
+  color: #9BA3C2;
 }
 
 /* Events list */
